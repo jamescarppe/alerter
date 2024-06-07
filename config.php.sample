@@ -1,0 +1,29 @@
+<?php
+// Place this somewhere on your host or in a volume and mount it in the container at /config/config.php
+
+$PORTAINER_API_URL = "https://portainer:9443";		// The address to your Portainer instance with the protocol and port
+$PORTAINER_API_KEY = "your_api_key_here";		// Provide an API key that has at least read-only access to the resources you want to check
+
+
+// Add an entry for each environment you want to check, with the environment ID as the key
+// Environments that are not listed will not be checked
+$ENVIRONMENTS_CONFIG = [
+	1 => [
+		"sendAlerts" => false,			// Don't send alerts for this environment
+	],
+	2 => [
+		"sendAlerts" => true,			// Send alerts for this environment
+		"alertRecipient" => "email@address",	// Send alerts to this email address
+	],
+	3 => [
+		"sendAlerts" => true,
+		"alertRecipient" => "anotheremail@address",
+		"checkinThreshold" => 30,		// For Edge environments, seconds since the last checkin to consider as "down"
+	],
+	5 => [
+		"sendAlerts" => true,
+		"alertRecipient" => "email@address",
+	],
+];
+
+?>
